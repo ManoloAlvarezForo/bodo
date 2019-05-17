@@ -1,2 +1,2 @@
-# bodo
-Bodo+ personal test project
+# XOI
+XOI Project One
