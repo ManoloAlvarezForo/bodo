@@ -10,170 +10,213 @@ import { FiChevronLeft } from 'react-icons/fi';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import DrawerList from './DrawerList';
+import {
+  APP_NAME_SHORT,
+  APP_NAME_SMALL,
+  PLUS,
+} from '../../constants/constants';
 
 const DRAWER_WIDTH = 220;
 
 class MiniDrawer extends React.Component {
-    state = {
-        open: true
-    };
+  state = {
+    open: true,
+  };
 
-    handleDrawer = () => {
-        this.setState({ open: !this.state.open })
-    }
+  handleDrawer = () => {
+    this.setState({ open: !this.state.open });
+  };
 
-    render() {
-        const { classes } = this.props;
-        return (
-            <Drawer
-                variant="permanent"
-                className={classNames(classes.drawer, {
-                    [classes.drawerOpen]: this.state.open,
-                    [classes.drawerClose]: !this.state.open,
-                })}
-                classes={{
-                    paper: classNames({
-                        [classes.paper]: 'relative',
-                        [classes.drawerOpen]: this.state.open,
-                        [classes.drawerClose]: !this.state.open
-                    }),
-                }}
-                open={this.state.open}
+  render() {
+    const { classes } = this.props;
+    return (
+      <Drawer
+        variant="permanent"
+        className={classNames(classes.drawer, {
+          [classes.drawerOpen]: this.state.open,
+          [classes.drawerClose]: !this.state.open,
+        })}
+        classes={{
+          paper: classNames({
+            [classes.paper]: 'relative',
+            [classes.drawerOpen]: this.state.open,
+            [classes.drawerClose]: !this.state.open,
+          }),
+        }}
+        open={this.state.open}
+      >
+        <div
+          className={classes.toolbar}
+          style={{ display: 'flex', justifyContent: 'center' }}
+        >
+          <AppBar style={{ backgroundColor: 'inherit' }} position="static">
+            <Toolbar
+              style={{ padding: '0', backgroundColor: 'rgb(65, 71, 85)' }}
             >
-                <div className={classes.toolbar} style={{ display: 'flex', justifyContent: 'center' }}>
-                    <AppBar style={{ backgroundColor: 'inherit' }} position="static">
-                        <Toolbar style={{ padding: '0', backgroundColor: 'rgb(65, 71, 85)' }} >
-                            <div style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'center' }}>
-                                {
-                                    this.state.open ?
-                                        (<div style={{ justifyContent: 'center', width: '100%', display: 'flex', alignItems: 'center' }}>
-                                            <Typography
-                                                style={{
-                                                    fontFamily: 'Pacifico',
-                                                    fontSize: '1.8rem',
-                                                    fontWeight: 'normal'
-                                                }}
-                                                component="h4"
-                                                variant="h4">{this.state.open ? 'Bodo' : 'B'}</Typography>
-                                            <Typography
-                                                style={{
-                                                    color: '#e91e63',
-                                                    fontFamily: 'Pacifico',
-                                                    fontSize: '1.5rem',
-                                                    fontWeight: 'normal'
-                                                }}
-                                                variant="h4">+</Typography>
-                                        </div>) :
-                                        (<div style={{ cursor: 'pointer' }} onClick={this.handleDrawer}>
-                                            <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'row' }}>
-                                                <Typography
-                                                    style={{
-                                                        fontFamily: 'Pacifico',
-                                                        fontSize: '1.5rem',
-                                                        fontWeight: 'normal'
-                                                    }}
-                                                    variant="h4">B</Typography>
-                                                <Typography
-                                                    style={{
-                                                        color: '#e91e63',
-                                                        fontFamily: 'Pacifico',
-                                                        fontSize: '1.5rem',
-                                                        fontWeight: 'normal'
-                                                    }}
-                                                    variant="h4">+</Typography>
-                                            </div>
-                                        </div>)
-                                }
-                                {
-                                    this.state.open && (
-                                        <IconButton style={{ marginLeft: 'auto' }}
-                                            color="inherit"
-                                            aria-label="Open drawer"
-                                            onClick={this.handleDrawer}
-                                            className={classNames({
-                                                [classes.hide]: !this.state.open,
-                                            })}
-                                        >
-                                            <FiChevronLeft color="gray" />
-                                        </IconButton>
-                                    )
-                                }
-                            </div>
-                        </Toolbar>
-                    </AppBar>
-                </div>
-                <Divider />
-                <DrawerList changeTitle={this.props.changeTitle} />
-            </Drawer>
-        )
-    }
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  width: '100%',
+                  justifyContent: 'center',
+                }}
+              >
+                {this.state.open ? (
+                  <div
+                    style={{
+                      justifyContent: 'center',
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Typography
+                      style={{
+                        fontFamily: 'Pacifico',
+                        fontSize: '1.8rem',
+                        fontWeight: 'normal',
+                      }}
+                      component="h4"
+                      variant="h4"
+                    >
+                      {this.state.open ? APP_NAME_SMALL : APP_NAME_SHORT}
+                    </Typography>
+                    <Typography
+                      style={{
+                        color: '#e91e63',
+                        fontFamily: 'Pacifico',
+                        fontSize: '1.5rem',
+                        fontWeight: 'normal',
+                      }}
+                      variant="h4"
+                    >
+                      +
+                    </Typography>
+                  </div>
+                ) : (
+                  <div
+                    style={{ cursor: 'pointer' }}
+                    onClick={this.handleDrawer}
+                  >
+                    <div
+                      style={{
+                        textAlign: 'center',
+                        display: 'flex',
+                        flexDirection: 'row',
+                      }}
+                    >
+                      <Typography
+                        style={{
+                          fontFamily: 'Pacifico',
+                          fontSize: '1.5rem',
+                          fontWeight: 'normal',
+                        }}
+                        variant="h4"
+                      >
+                        {APP_NAME_SHORT}
+                      </Typography>
+                      <Typography
+                        style={{
+                          color: '#e91e63',
+                          fontFamily: 'Pacifico',
+                          fontSize: '1.5rem',
+                          fontWeight: 'normal',
+                        }}
+                        variant="h4"
+                      >
+                        {PLUS}
+                      </Typography>
+                    </div>
+                  </div>
+                )}
+                {this.state.open && (
+                  <IconButton
+                    style={{ marginLeft: 'auto' }}
+                    color="inherit"
+                    aria-label="Open drawer"
+                    onClick={this.handleDrawer}
+                    className={classNames({
+                      [classes.hide]: !this.state.open,
+                    })}
+                  >
+                    <FiChevronLeft color="gray" />
+                  </IconButton>
+                )}
+              </div>
+            </Toolbar>
+          </AppBar>
+        </div>
+        <Divider />
+        <DrawerList changeTitle={this.props.changeTitle} />
+      </Drawer>
+    );
+  }
 }
 
 const styles = theme => ({
-    root: {
-        display: 'flex',
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: DRAWER_WIDTH,
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 36,
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: DRAWER_WIDTH,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+  },
+  drawerOpen: {
+    width: DRAWER_WIDTH,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing.unit * 7 + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing.unit * 7 + 1,
     },
-    appBar: {
-        zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        marginLeft: DRAWER_WIDTH,
-        width: `calc(100% - ${DRAWER_WIDTH}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginLeft: 12,
-        marginRight: 36,
-    },
-    hide: {
-        display: 'none',
-    },
-    drawer: {
-        width: DRAWER_WIDTH,
-        flexShrink: 0,
-        whiteSpace: 'nowrap',
-    },
-    drawerOpen: {
-        width: DRAWER_WIDTH,
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    drawerClose: {
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        overflowX: 'hidden',
-        width: theme.spacing.unit * 7 + 1,
-        [theme.breakpoints.up('sm')]: {
-            width: theme.spacing.unit * 7 + 1,
-        },
-    },
-    paper: {
-        position: 'relative'
-    },
-    toolbar: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        // padding: '0 8px',
-        ...theme.mixins.toolbar
-    }
+  },
+  paper: {
+    position: 'relative',
+  },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    // padding: '0 8px',
+    ...theme.mixins.toolbar,
+  },
 });
 
-
 MiniDrawer.propTypes = {
-    classes: PropTypes.object.isRequired,
-    theme: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(MiniDrawer);
